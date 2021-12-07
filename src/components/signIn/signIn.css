@@ -1,0 +1,137 @@
+.div-geral{
+    display: flex;
+    align-items: center;
+}
+.div-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+    align-self: center;
+}
+
+.div-align {
+    display: flex;
+    width: 100%;
+    position: absolute;
+    top: 25%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    
+}
+
+.div-align-items {
+    display: flex;
+    flex-direction: column;
+    margin-left: 23%;
+}
+
+/*Inputs e Textos -------------------------*/
+.div-input {
+    margin: 8px;
+
+}
+
+h2, p {
+    color: #2C2630;
+    font-family: sans-serif;
+}
+
+.div-text {
+    margin-left: 15px;
+}
+a {
+    text-decoration: none;
+    font-family: sans-serif;
+}
+.btn-text-sign {
+    color: #6C63FF;
+    margin-left: 12px;
+    cursor: pointer;
+}
+.btn-text-sign:hover {
+    color: #4941D1;
+}
+
+.input-text {
+    height: 25px;
+    width: 20em;
+    padding: 4px;
+    padding-left: 10px;
+    border: none;
+    border: 1px groove #2C2630;
+    border-radius: 5px;
+    
+    
+}
+.input-text:focus{
+    outline: 1px solid #6C63FF;
+}
+h2 {
+    margin: 8px;
+    margin-bottom: 12px;
+}
+
+.div-sign {
+    display: flex;
+    align-items: center;
+}
+
+/*Button---------------*/
+.btn-prima {
+    color: white;
+    background-color: #6C63FF;
+    border: none;
+    border-radius: 3px;
+    height: 40px;
+    width: 110px;
+    font-size: large;
+    cursor: pointer;
+}
+
+.btn-prima:hover {
+    background-color: #908AFF;
+}
+
+.btn-prima:active {
+    background-color: #4941D1
+}
+
+
+/*---------------------------------------*/
+
+/* CSS da Figura da pagina de login----------------------*/
+
+.div-draw {
+    display: flex;
+    flex-direction: column;
+    margin-left: 100px;
+}
+
+.draw {
+    width: 70%;
+}
+/*CSS Modal ------------------*/
+
+.div-align-items-modal{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-self: center;
+    
+}
+
+/*----------------------------------*/
+/*Responsividade @media ------------------------------*/
+@media only screen and (max-width:960px) { 
+    .div-draw{
+        display: none;
+    }
+    .div-align-items{
+        margin-left: 0%;
+    }
+    .div-logo{
+        margin-top: 11%;
+    }
+}
