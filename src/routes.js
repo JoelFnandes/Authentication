@@ -12,7 +12,6 @@ import {SignIn, Navbar} from './components'
 function Routes() {
     return(
         <Router>
-            <Navbar/>
             <Switch>  
                 <Route path="/authen">
                     <Authentication></Authentication>

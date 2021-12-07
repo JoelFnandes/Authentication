@@ -1,23 +1,51 @@
+/* POR PADRÃO */
 :root{
     --primary: #6C63FF;
 }
 
 .btn{
-    border-radius: 3px;
+    padding: 8px 16px;
+    border-radius: 5px !important;
     outline: none;
     border: none;
     cursor: pointer;
-}
-
-.btn:hover{
     
 }
+.btn:active{
+    background-color: #4941D1 !important;
+}
 
-.btn--primary{
+/* PRIMARY */
+.btn-primary{
+    background-color: var(--primary);
     color: white;
+    width: 115px;
+}
+
+.btn-primary:hover{
+    background-color: #908AFF;
+}
+
+/* OUTLINE ------------- */
+.btn-outline{
+    color: #6C63FF; 
+    background-color: transparent; 
+    border: 1px solid #6C63FF;
+    border: 1px solid var(--primary);
+}
+.btn-outline:hover{
+    color: #FFFFFF;
     background-color: #6C63FF;
-    border: none;
-    border-radius: 3px;
-    font-size: large;
-    cursor: pointer;
+}
+
+/* SIZES */
+.btn-medium{
+    padding: 10px 16px;
+    font-size: 16px;
+
+}
+.btn-large{
+    padding: 12px 24px;
+    font-size: 20px;
+
 }
