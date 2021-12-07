@@ -1,0 +1,23 @@
+:root{
+    --primary: #6C63FF;
+}
+
+.btn{
+    border-radius: 3px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover{
+    
+}
+
+.btn--primary{
+    color: white;
+    background-color: #6C63FF;
+    border: none;
+    border-radius: 3px;
+    font-size: large;
+    cursor: pointer;
+}

@@ -1,63 +1,45 @@
 .nav-geral{
     display: flex;
-    max-width: 90%;
-    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1;
+    margin-top: 15px;
 }
+/* Div com Logo */
 .contain-logo{
-    display: flex !important;
-    align-items: center !important ;
-    justify-content: center;
+    align-items: center;
     align-self: center;
-
-}
-
-.nav-logo{
-    position: absolute;
-    margin-left: 10%;
-    
+    display: block;
 }
 .link-logo{
-    display: flex;
-    align-self: center;
-    align-items: center;
+    
     
 }
-.list-links{
+.img-logo{
+
+    
+}
+/* --------------------- */
+
+
+/* Lista ul com as tags links do nav */
+.nav-list-links{
     display: flex;
-    list-style-type: none;
     align-items: center;
-    margin-left: auto;
+    align-self: center;
+    
+}
+
+li{
+    list-style-type: none;
+}
+
+.nav-li-link{
+    margin-left: 35px;
 }
 
 .nav-link-primary{
-    margin-left: 30px;
     color: #2C2630;
-}
-.btn:focus{
-    box-shadow: none !important;
-}
-
-.btn-secon{ 
-    color: #6C63FF !important; 
-    background-color: transparent; 
-    border: 1px solid #6C63FF;
-    border-radius: 3px;
-    height: 40px;
-    width: auto;
-    font-size: medium;
-    margin-left: 30px;
-    
-} 
-.btn-secon:hover{
-    color: #FFFFFF !important;
-    background-color: #6C63FF;
-}
-.btn-secon:active{
-    background-color: #4941D1;
-    color: #FFFFFF !important;
-}
-.btn-secon:focus{
-    color: #FFFFFF;
 }
 
 .nav-link-primary:hover{
@@ -66,7 +48,25 @@
 .nav-link-primary:active{
     color: #908AFF ;
 }
-a{
-    font-size: 17px;
-    font-family: sans-serif;
+
+/* -------------------------------- */
+
+/* Div com button de Inscrevas-se */
+.div-nav-button{
+
 }
+
+.btn-secon{ 
+    
+    
+} 
+.btn-secon:hover{
+    
+}
+.btn-secon:active{
+    
+}
+.btn-secon:focus{
+    
+}
+

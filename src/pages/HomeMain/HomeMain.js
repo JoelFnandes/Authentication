@@ -6,7 +6,6 @@ import ilutracao from "../../images/Ilustracao.png"
 function HomeMain(){ 
         return (
             <div className="">
-                <Navbar/>
             <div className="div-home">
                 <div className="div-elemen">
                     <h1>Dê Mais Versatilidade Aos Projetos Que Você Ama</h1>
