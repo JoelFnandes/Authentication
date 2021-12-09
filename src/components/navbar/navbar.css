@@ -1,20 +1,19 @@
+:root{
+    font-family: sans-serif;
+}
 /* nav geral */
 .nav-geral{
     display: flex;
+    font-size: 1.2em;
     justify-content: space-around;
     align-items: center;
-    z-index: 1;
-    margin-top: 15px;
+    
 }
 
 
-/* Div com Logo */
-.contain-logo{
-    align-items: center;
-    align-self: center;
-    display: block;
-}
+/* Logo */
 .link-logo{
+    cursor: pointer;
     
     
 }
@@ -25,6 +24,8 @@
 
 .menu-icon{
     display: none;
+    
+
 }
 /* Lista ul com as tags links do nav */
 .nav-ul-links{
@@ -63,6 +64,23 @@ li{
     }
     .nav-ul-links{
         display: flex;
+        flex-direction: column;
+        width: 100%;
+        opacity: 1;
+        display: none;
+    }
+    .nav-li-link{
+        margin-bottom: 1.5em;
+    }
+    .menu-icon{
+        display: flex;
+        align-self: center;
+        justify-content: center;
+        align-items: center;
+    }
+    .faBars{
+        align-self: center;
+        align-items: center;
     }
 }
 
