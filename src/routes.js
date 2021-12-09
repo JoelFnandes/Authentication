@@ -17,6 +17,7 @@ function Routes() {
                     <Authentication></Authentication>
                 </Route>
                 <Route path="/">
+                <Navbar />
                     <HomeMain></HomeMain>
                 </Route>
             </Switch>

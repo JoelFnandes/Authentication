@@ -5,7 +5,8 @@
 .nav-geral{
     display: flex;
     font-size: 1.2em;
-    justify-content: space-around;
+    height: 80px;
+    justify-content: center;
     align-items: center;
     
 }
@@ -14,8 +15,8 @@
 /* Logo */
 .link-logo{
     cursor: pointer;
-    
-    
+    justify-self: start;
+    margin-left: 20px;
 }
 .img-logo{
 
@@ -34,6 +35,9 @@
     grid-gap: 10px;
     align-items: center;
     justify-content: end;
+    margin-right: 2rem;
+    text-align: center;
+    width: 70vw;
     
 }
 
@@ -77,10 +81,15 @@ li{
         align-self: center;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
     }
     .faBars{
         align-self: center;
         align-items: center;
+        color: #6C63FF;
+    }
+    .link-logo{
+        margin-right: 65%;
     }
 }
 

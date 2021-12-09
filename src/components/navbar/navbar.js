@@ -19,7 +19,7 @@ function Navbar() {
                 <li className="nav-li-link"><a href="/authen"><Button buttonStyle="btn-outline" buttonSize="btn-medium" onClick="">Iniciar Sessão</Button></a></li>
                 
             </ul>
-            <div className="menu-icon">
+            <div className="menu-icon" onClick="">
                     <FaBars className="faBars"></FaBars>
             </div>         
         </nav>
