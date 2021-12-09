@@ -27,11 +27,10 @@ body{
 .div-figu{
     justify-self: flex-end;
     
-
 }
 
 
-@media only screen and (min-width:1366px){
+@media only screen and (min-width:1367px){
     .ilustra{
         width: 600px;
     
@@ -41,7 +40,7 @@ body{
 
     }
     .div-elemen{
-        font-size: 150%;
+        font-size: 145%;
         width:150%;
     }
 }
@@ -51,6 +50,20 @@ body{
     }
     .ilustra{
         display: none;
+    }
+    
+}
+@media screen and (max-width: 1366px) {
+    .first-contain{
+        grid-gap: 120px;
+
+    }
+    .div-elemen{
+        width:100%;
+    }
+    .ilustra{
+        width: 500px;
+    
     }
 }
 

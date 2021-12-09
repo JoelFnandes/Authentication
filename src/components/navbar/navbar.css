@@ -18,10 +18,6 @@
     justify-self: start;
     margin-left: 20px;
 }
-.img-logo{
-
-    
-}
 
 .menu-icon{
     display: none;
@@ -70,11 +66,25 @@ li{
         display: flex;
         flex-direction: column;
         width: 100%;
+        height: 500px;
         opacity: 1;
-        display: none;
+        transition: all 0.5s ease;
+    }
+    .nav-ul-links:active{
+        background-color: #908AFF;
+        left: 0;
+        opacity: 1;
+        transition: all 0.5s ease;
+        z-index: 1;
     }
     .nav-li-link{
-        margin-bottom: 1.5em;
+        text-align: center;
+        padding: 2rem;
+        width: 100%;
+        display: table;
+    }
+    .nav-li-link:hover{
+        background-color: #6C63FF;
     }
     .menu-icon{
         display: flex;
