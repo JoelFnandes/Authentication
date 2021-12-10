@@ -12,7 +12,7 @@ function HomeMain() {
             <div className="first-contain">
                 <div className="div-elemen">
                     <h1>Dê Mais Versatilidade Aos Projetos Que Você Ama</h1>
-                    <Button buttonStyle="btn-primary" buttonSize="btn-medium">Saiba mais</Button>
+                    <Button className="Button" buttonStyle="btn-primary" buttonSize="btn-medium">Saiba mais</Button>
                 </div>
                 <div className="div_figu"><img className="ilustra" src={ilustracao} /></div>
             </div>

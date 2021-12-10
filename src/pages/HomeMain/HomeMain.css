@@ -29,41 +29,71 @@ body{
     
 }
 
-
-@media only screen and (min-width:1367px){
-    .ilustra{
-        width: 600px;
+@media only screen and (min-width: 1480px){
     
-    }
     .first-contain{
-        grid-gap: 300px;
+        grid-gap: 225px !important;
 
     }
     .div-elemen{
-        font-size: 145%;
-        width:150%;
+        width: 120% !important;
+        font-size: 120% !important;
+    }
+    .ilustra{
+        width: 525px !important;
+    
     }
 }
-@media only screen and (max-width: 960px){
+
+@media only screen and (min-width:1280px){
+    .first-contain{
+        grid-gap: 125px ;
+
+    }
+    .div-elemen{
+        width: 105% ;
+        font-size: 105% ;
+    }
+    .ilustra{
+        width: 480px ;
+    
+    }
+}
+@media only screen and (max-width: 1280px) {
+    .first-contain{
+        grid-gap:25px;
+
+    }
+    .div-elemen{
+        width: 90%;
+        font-size: 95% ;
+        margin: 0px 30px;
+        
+    }
+    .ilustra{
+        width: 425px;
+    
+    }
+}
+
+@media only screen and (max-width: 860px){
+    .first-contain{
+        grid-gap: 0px;
+
+    }
     .div-figu{
         display: none;
     }
     .ilustra{
         display: none;
     }
-    
-}
-@media screen and (max-width: 1366px) {
-    .first-contain{
-        grid-gap: 120px;
-
-    }
     .div-elemen{
-        width:100%;
+     justify-self: center !important;   
+     font-size: 105%;
+     width: 100%;
     }
-    .ilustra{
-        width: 500px;
     
-    }
 }
+
+
 
