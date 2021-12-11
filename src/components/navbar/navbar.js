@@ -6,7 +6,7 @@ import menu from "../../icons/bars-solid.svg"
 import { FaBars, FaTimes } from 'react-icons/fa';
 
 function Navbar() {
-
+    
     const [isdropOpen, setDropOpen] = useState(true);
     const [isdropClose, setDropClose] = useState(false);
 
