@@ -20,7 +20,9 @@ function SignIn() {
 
     Axios.defaults.withCredentials = true;
 
+    const [msgError, setMsgError] = useState();
     
+
     const register = () => {
         Axios.post("http://localhost:4000/register",{
         name: nameReg,
@@ -29,6 +31,7 @@ function SignIn() {
         password2: password2Reg,
     }).then((response) => {
         console.log(response);
+        setMsgError(response.data);
     });
     };
 
@@ -70,6 +73,7 @@ function SignIn() {
             {isModalVisible ?(
             <SignUp onClose={() => setModalVisible(false)}>
                     <div className="div-align-items-modal">
+                        <ul><li>{msgError!== undefined ? msgError.errors.map(error => <p>{error.message}</p>): null }</li></ul>
                         <h2>Inscreva-se</h2>
                         <div className="div-input">
                             <input id="nameReg"className="input-text" onChange={(e) => {setNameReg(e.target.value);}} type="text" placeholder="Nome" required/>
