@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./signIn.css";
 // import logo from '../../images/logo.svg'
 import undraw from '../../images/undraw_authentication.png'
@@ -23,7 +23,7 @@ function SignIn() {
 
     const [msgError, setMsgError] = useState();
     const [msgSucc, setMsgSucc] = useState();
-
+    let r;
     const register = () => {
         Axios.post("http://localhost:4000/register", {
             name: nameReg,
@@ -34,23 +34,30 @@ function SignIn() {
         }).then((response) => {
             if (response.data.errors == null) {
                 setMsgSucc(response.data);
+                setModalVisible(false);
                 
             }
             else {
                 setMsgError(response.data);
             }
-
         });
 
     }
-
+    
 
     const login = () => {
         Axios.post("http://localhost:4000/login", {
             email: email,
             password: password,
 
-        })
+        }).then((response, isMatch) => {
+            
+            // window.location.replace('http://localhost:3000/')
+        
+            console.log(
+                isMatch.data
+            );
+        });
     };
 
     return (
@@ -60,7 +67,7 @@ function SignIn() {
             </div> */}
             <div className="div-align">
                 <div className="div-align-items">
-                    <ul><li>{msgSucc !== undefined ? msgSucc.successes.map(success => <p>{success.message}</p>): null}</li></ul>
+                    <ul><li>{msgSucc !== undefined ? msgSucc.successes.map(success => <p>{success.message}</p>) : null}</li></ul>
                     <h2>Faça login</h2>
                     <div className="div-input">
                         <span src={envelope}></span>

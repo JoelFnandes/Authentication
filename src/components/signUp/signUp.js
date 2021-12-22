@@ -7,7 +7,7 @@ import Axios from "axios";
 
 const SignUp = ({id="modal",onClose,children}) => {
     const handleOutsideClick = (e) => {
-        if(e.target.id === id) onClose();
+        if(e.target.id === id) {onClose()};
     }
     
     return (
