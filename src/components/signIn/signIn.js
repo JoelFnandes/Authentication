@@ -4,8 +4,12 @@ import "./signIn.css";
 import undraw from '../../images/undraw_authentication.png'
 import envelope from '../../icons/envelope-solid.svg'
 import SignUp from "../signUp/signUp";
+import Navbar from "../navbar/navbar";
 import Axios from "axios";
-import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from 'react-router-dom';
+import { useContext } from 'react';
+import  {AuthContext} from '../authContext';
+
 
 function SignIn() {
     const [isModalVisible, setModalVisible] = useState(false);
@@ -16,8 +20,8 @@ function SignIn() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    const [loginStatus, setLoginStatus] = useState("");
+    const history = useHistory();
+    const { setIsAuthenticated, setUser } = useContext(AuthContext);
 
     Axios.defaults.withCredentials = true;
 
@@ -44,21 +48,22 @@ function SignIn() {
 
     }
     
-
-    const login = () => {
-        Axios.post("http://localhost:4000/login", {
+    const signIn = () => {
+        Axios.post("http://localhost:4000/signIn", {
             email: email,
             password: password,
+        }).then((response,isMatch) =>{
+            if(response.data.errors == null){ 
+                setIsAuthenticated(true);
+                setUser({id: response.data.successes[0].message, name: response.data.successes[1].message });
+                history.push('/home');
+            } else {
+                setMsgError(response.data);
+            }
 
-        }).then((response, isMatch) => {
-            
-            // window.location.replace('http://localhost:3000/')
-        
-            console.log(
-                isMatch.data
-            );
-        });
-    };
+        })     
+    }
+    
 
     return (
         <div className="div-geral">
@@ -67,7 +72,8 @@ function SignIn() {
             </div> */}
             <div className="div-align">
                 <div className="div-align-items">
-                    <ul><li>{msgSucc !== undefined ? msgSucc.successes.map(success => <p>{success.message}</p>) : null}</li></ul>
+                    <ul><li>{msgSucc !== undefined ? msgSucc.successes.map(success => <p id="success">{success.message}</p>): null}</li></ul>
+                    <ul><li>{msgError !== undefined ? msgError.errors.map((error, index) => ( <p id="error" key={index}>{error.message}</p>)) : null}</li></ul>
                     <h2>Faça login</h2>
                     <div className="div-input">
                         <span src={envelope}></span>
@@ -78,7 +84,7 @@ function SignIn() {
                     </div>
                     <div className="div-input">
                         <div className="div-sign">
-                            <button className="btn-prima" onClick={login} type="submit">Entrar</button>
+                            <button className="btn-prima" onClick={signIn} type="submit">Entrar</button>
                             <p className="div-text">ou</p>
                             <a onClick={() => setModalVisible(true)} className="btn-text-sign">Inscreva-se</a>
                         </div>
@@ -89,7 +95,7 @@ function SignIn() {
                 </div>
             </div>
             {isModalVisible ? (
-                <SignUp onClose={() => setModalVisible(false)}>
+                <SignUp onClose={() => setModalVisible()}>
                     <div className="div-align-items-modal">
                         <ul><li>{msgError !== undefined ? msgError.errors.map(error => <p>{error.message}</p>) : null}</li>
                         </ul>

@@ -1,0 +1,326 @@
+.chat-geral {
+    display: flex;
+
+}
+
+.create-chat {
+    display: flex;
+    margin: 10% 10% 0% 0%;
+    align-items: flex-start;
+}
+
+.chat-content {
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    height: 91vh;
+
+}
+
+.chat-body {
+    width: 25em;
+    display: grid;
+    grid-template-rows: 15% 70% 15%;
+    border-radius: 10px;
+    border: 2px solid rgba(144, 138, 255, 0.644);
+    height: 50%;
+    margin-left: 20px;
+
+}
+
+.chat-header {
+    grid-row: 1;
+    grid-template-columns: 75% 25%;
+    display: grid;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid rgba(144, 138, 255, 0.644);
+}
+
+.name-chat {
+    grid-column: 1;
+    margin-left: 20px;
+
+}
+
+
+.chat-messages {
+    display: flex;
+    flex-direction: column;
+    max-height: 300px;/* Altura máxima para exibição das mensagens */
+    overflow-y: auto;
+    width: 25em;
+    background-color: #2c263015;
+}
+.chat-messages::-webkit-scrollbar {
+    width: 9px; /* Largura da barra de rolagem */
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background-color: #c7c7c769; /* Cor de fundo da área de rolagem */
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+     /* Cor do thumb da barra de rolagem */
+    background-color: #4841d17c;
+    border-radius: 14px;
+}
+.message {
+    margin: 6px;
+    padding: 10px;
+}
+
+.user-message {
+    align-self: flex-end;
+    border-radius: 10px;
+    background-color: rgba(107, 99, 255, 0.644);
+}
+
+.other-message {
+    align-self: flex-start;
+    border-radius: 10px;
+    background-color: lightgray;
+}
+
+.div-input {
+    grid-row: 3;
+
+
+}
+
+.chat-input {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    margin: 10px 10px 0 0;
+
+
+}
+
+.input-text-envMensa{
+    grid-column: 1;
+    height: 25px;
+    width: 20em;
+    padding: 4px;
+    padding-left: 10px;
+    border: none;
+    border:1px groove #908AFF;
+    border-radius: 15px;
+    margin-left: 5px;
+}
+.input-text-envMensa:focus {
+    outline: 1px solid #6C63FF;
+}
+
+.button-send {
+    grid-column: 2;
+    padding: 10px 12px;
+    font-size: 15px;
+    width: 70px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #6C63FF;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-left: 5px;
+
+}
+
+.button-send:hover {
+    background-color: #908AFF;
+}
+
+.button-send:active {
+    background-color: #4941D1;
+}
+
+.btn-createChat {
+    padding: 10px 12px;
+    font-size: 15px;
+    width: 70px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #6C63FF;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 3em;
+}
+
+.btn-createChat:hover {
+    background-color: #908AFF;
+}
+
+.btn-createChat:active {
+    background-color: #4941D1;
+}
+
+.send-img {
+
+    width: 27px;
+    height: 27px;
+}
+
+.plus-img {
+
+    width: 27px;
+    height: 27px;
+}
+
+.div-modal-criaChat {
+    display: grid;
+    grid-template-columns: 72% 20%;
+    position: absolute;
+    z-index: 1;
+    align-items: center;
+    justify-content: flex-end;
+    
+    margin-left: 6em;
+
+}
+
+
+.input-text-nomeChat {
+    grid-column: 1;
+    height: 25px;
+    width: 20em;
+    padding: 4px;
+    padding-left: 10px;
+    border: none;
+    border:1px groove #908AFF;
+    border-radius: 15px;
+    margin-left: 5px;
+
+
+}
+
+.input-text-nomeChat:focus {
+    outline: 1px solid #6C63FF;
+}
+
+
+.btn-addNomeChat {
+    grid-column: 2;
+    padding: 10px 12px;
+    font-size: 15px;
+    width: 70px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #6C63FF;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.btn-addNomeChat:hover {
+    background-color: #908AFF;
+}
+
+.btn-addNomeChat:active {
+    background-color: #4941D1;
+}
+
+.btn-addParticipants {
+    grid-column: 2;
+    padding: 10px 12px;
+    font-size: 15px;
+    width: 70px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #6C63FF;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.btn-addParticipants:hover {
+    background-color: #908AFF;
+}
+
+.btn-addParticipants:active {
+    background-color: #4941D1;
+}
+
+.div-modalAddUser {
+
+    display: grid;
+    grid-template-columns: 72% 20%;
+    align-self: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 1;
+    right: 59em;
+    height: 5em;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.445);
+    background-color: white;
+    align-items: center;
+    width: 25em;
+}
+
+
+.input-text-addUser {
+    display: flex;
+    grid-column: 1;
+    height: 25px;
+    width: 20em;
+    padding: 4px;
+    padding-left: 10px;
+    
+    border:1px groove #908AFF;
+    border-radius: 15px;
+}
+
+.input-text-addUser:focus {
+    outline: 1px solid #6C63FF;
+}
+
+
+.btn-addNameUser {
+    grid-column: 2;
+    padding: 10px 12px;
+    font-size: 15px;
+    width: 70px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #6C63FF;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-right: 50px;
+}
+
+/* .other-message{
+    grid-column: 1;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 8px;
+
+}
+
+.user-message{
+    grid-column: 2;
+    display: flex;
+    height: 30px;
+    justify-content: flex-end;
+    margin-right: 8px;
+
+} */

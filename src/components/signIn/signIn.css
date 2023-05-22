@@ -56,12 +56,12 @@ a {
 
 .input-text {
     height: 25px;
-    width: 20em;
+    width: 21em;
     padding: 4px;
     padding-left: 10px;
     border: none;
-    border: 1px groove #2C2630;
-    border-radius: 5px;
+    border: 1px groove #908AFF;
+    border-radius: 15px;
     
     
 }
@@ -76,6 +76,14 @@ h2 {
 .div-sign {
     display: flex;
     align-items: center;
+}
+
+#success{
+    color: rgb(59, 122, 59);
+}
+
+#error{
+    color: rgb(155, 40, 40);
 }
 
 /*Button---------------*/

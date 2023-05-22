@@ -1,8 +1,7 @@
 import React from "react";
-import { SignIn } from "..";
+
 import './signUp.css';
 import Close from "../../icons/times-solid.svg";
-import Axios from "axios";
 
 
 const SignUp = ({id="modal",onClose,children}) => {

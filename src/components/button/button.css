@@ -19,7 +19,7 @@
 .btn-primary{
     background-color: var(--primary);
     color: white;
-    width: 125px;
+    
 }
 
 .btn-primary:hover{
@@ -42,10 +42,17 @@
 .btn-small{
     padding: 10px 12px;
     font-size: 15px;
+    width: 70px;
+    height: 40px;
+    display: flex ;
+    justify-content: center;
+    align-items: center;
 }
 .btn-medium{
+    display: flex;
     padding: 10px 16px;
     font-size: 18px;
+    
 }
 .btn-large{
     padding: 12px 24px;
