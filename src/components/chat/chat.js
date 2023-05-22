@@ -9,8 +9,8 @@ import Axios from "axios";
 import { render } from "@testing-library/react";
 
 function Chat() {
-  const [messageEnv, setMessageEnv] = useState({});
-  const [messageRec, setMessageRec] = useState("");
+  const [message, setMessage] = useState({});
+  const [messageBD, setMessageBD] = useState("");
   const [nameRoom, setNameRoom] = useState("");
   const [nameParti, setNameParti] = useState("");
   const { isAuthenticated, user } = useContext(AuthContext);
@@ -19,6 +19,8 @@ function Chat() {
   const [isModalVisible, setModalVisible] = useState(false);
   const [isModalVisibleParti, setModalVisibleParti] = useState(false);
   const [chats, setChats] = useState([]);
+
+  const messagesContainerRef = useRef(null);
   const socketRef = useRef(null);
 
   Axios.defaults.withCredentials = true;
@@ -61,74 +63,59 @@ function Chat() {
     });
   };
 
+  const retrieveChats = () => {
+    Axios.get(`http://localhost:4000/chats?user_id=${user.id}`)
+      .then((response) => {
+        if (response.data.successes) {
+          const chatPromises = response.data.successes[0].chats.map(
+            async (chat) => {
+              const messagesResponse = await Axios.get(
+                `http://localhost:4000/messages?chat_id=${chat.id}`
+              );
+              const updatedChat = {
+                ...chat,
+                messages: messagesResponse.data.successes || [],
+              };
+              return updatedChat;
+            }
+          );
+          Promise.all(chatPromises)
+            .then((updatedChats) => {
+              const sortedChats = updatedChats.sort((a, b) =>
+                a.id > b.id ? 1 : -1
+              );
+              setChats(sortedChats);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        } else if (response.data.errors) {
+          console.log(response.data.errors);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     if (isAuthenticated) {
-      Axios.get(`http://localhost:4000/chats?user_id=${user.id}`)
-        .then((response) => {
-          if (response.data.successes) {
-            const chatPromises = response.data.successes[0].chats.map(
-              async (chat) => {
-                const messagesResponse = await Axios.get(
-                  `http://localhost:4000/messages?chat_id=${chat.id}`
-                );
-                const updatedChat = {
-                  ...chat,
-                  messages: messagesResponse.data.successes || [],
-                };
-                return updatedChat;
-              }
-            );
-            Promise.all(chatPromises)
-              .then((updatedChats) => {
-                const sortedChats = updatedChats.sort((a, b) =>
-                  a.id > b.id ? 1 : -1
-                );
-                setChats(sortedChats);
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          } else if (response.data.errors) {
-            console.log(response.data.errors);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      retrieveChats();
     }
   }, [isAuthenticated]);
 
   useEffect(() => {
-    const chatSocket = new WebSocket("ws://localhost:4000"); // Estabelece uma conexão WebSocket
-    socketRef.current = chatSocket;
-
-    chatSocket.onmessage = (event) => {
-      const newMessage = JSON.parse(event.data); // Analisa a mensagem recebida
-      const updatedChats = chats.map((chat) => {
-        if (chat.id === newMessage.chatId) {
-          const updatedMessages = [
-            ...chat.messages,
-            { user_id: newMessage.senderId, message: newMessage.message },
-          ];
-          return {
-            ...chat,
-            messages: updatedMessages, // Atualiza as mensagens do chat
-          };
-        }
-        return chat;
-      });
-      setChats(updatedChats);
-    };
-
-    return () => {
-      chatSocket.close(); // Fecha a conexão WebSocket quando o componente é desmontado
-    };
+    // Scroll para a parte inferior do elemento quando as mensagens forem atualizadas
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
   }, [chats]);
+
 
   const sendMessage = (chatId) => {
     Axios.post("http://localhost:4000/messages", {
       user_id: user.id,
-      message: messageEnv[chatId],
+      message: message[chatId],
       chat_id: chatId,
     })
       .then((response) => {
@@ -144,7 +131,7 @@ function Chat() {
             return chat;
           });
           setChats(updatedChats);
-          setMessageEnv((prevState) => ({
+          setMessage((prevState) => ({
             ...prevState,
             [chatId]: ""
           }));
@@ -160,6 +147,13 @@ function Chat() {
       });
   };
 
+  const refreshPage = () => {
+    
+    setChats([]);
+    retrieveChats();
+    
+  }
+
   return (
     <div className="chat-geral">
       <div className="create-chat">
@@ -168,10 +162,10 @@ function Chat() {
             <img className="plus-img" src={plus}></img>
           </button>
         ) : (
-            <button className="btn-createChat" onClick={() => setModalVisible(true)}>
-              <img className="plus-img" src={plus}></img>
-            </button>
-          )}
+          <button className="btn-createChat" onClick={() => setModalVisible(true)}>
+            <img className="plus-img" src={plus}></img>
+          </button>
+        )}
         {isModalVisible ? (
           <div className="div-modal-criaChat">
             <input
@@ -214,37 +208,36 @@ function Chat() {
                   <img className="plus-img" src={plus}></img>
                 </button>
               ) : (
-                  <button
-                    className="btn-addParticipants"
-                    onClick={() => setModalVisibleParti(true)}
-                  >
-                    <img className="plus-img" src={plus}></img>
-                  </button>
-                )}
+                <button
+                  className="btn-addParticipants"
+                  onClick={() => setModalVisibleParti(true)}
+                >
+                  <img className="plus-img" src={plus}></img>
+                </button>
+              )}
             </div>
-            <div className="chat-messages">
+            <div className="chat-messages" ref={messagesContainerRef}>
               {chat.messages && Array.isArray(chat.messages) ? (
                 chat.messages.map((message, index) => (
                   <p
                     key={index}
                     className={`message ${message.user_id == user.id ? "user-message" : "other-message"
-                      }`}
-                  >
+                      }`}>
                     {message.message}
                   </p>
                 ))
               ) : (
-                  <p>Sem mensagens</p>
-                )}
+                <p>Sem mensagens</p>
+              )}
             </div>
             <div className="div-input">
               <div className="chat-input">
-                <input
+                <input id="inp"
                   className="input-text-envMensa"
                   type="text"
-                  value={messageEnv[chat.id] || ""} // Obtenha o valor da mensagem correspondente ao ID do chat
+                  value={message[chat.id] || ""} // Obtenha o valor da mensagem correspondente ao ID do chat
                   onChange={(e) =>
-                    setMessageEnv((prevState) => ({
+                    setMessage((prevState) => ({
                       ...prevState,
                       [chat.id]: e.target.value // Atualize a mensagem correspondente ao ID do chat
                     }))
@@ -254,7 +247,7 @@ function Chat() {
                 <button
                   className="button-send"
                   onClick={() => {
-                    sendMessage(chat.id); setMessageEnv("");;
+                    sendMessage(chat.id); refreshPage();
                   }}
                 >
                   <img className="send-img" src={send}></img>
