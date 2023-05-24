@@ -48,24 +48,29 @@
 .chat-messages {
     display: flex;
     flex-direction: column;
-    max-height: 300px;/* Altura máxima para exibição das mensagens */
+    max-height: 300px;
+    /* Altura máxima para exibição das mensagens */
     overflow-y: auto;
     width: 25em;
     background-color: #2c263015;
 }
+
 .chat-messages::-webkit-scrollbar {
-    width: 9px; /* Largura da barra de rolagem */
+    width: 9px;
+    /* Largura da barra de rolagem */
 }
 
 .chat-messages::-webkit-scrollbar-track {
-    background-color: #c7c7c769; /* Cor de fundo da área de rolagem */
+    background-color: #c7c7c769;
+    /* Cor de fundo da área de rolagem */
 }
 
 .chat-messages::-webkit-scrollbar-thumb {
-     /* Cor do thumb da barra de rolagem */
+    /* Cor do thumb da barra de rolagem */
     background-color: #4841d17c;
     border-radius: 14px;
 }
+
 .message {
     margin: 6px;
     padding: 10px;
@@ -97,17 +102,18 @@
 
 }
 
-.input-text-envMensa{
+.input-text-envMensa {
     grid-column: 1;
     height: 25px;
     width: 20em;
     padding: 4px;
     padding-left: 10px;
     border: none;
-    border:1px groove #908AFF;
+    border: 1px groove #908AFF;
     border-radius: 15px;
     margin-left: 5px;
 }
+
 .input-text-envMensa:focus {
     outline: 1px solid #6C63FF;
 }
@@ -139,6 +145,7 @@
 }
 
 .btn-createChat {
+    position: relative;
     padding: 10px 12px;
     font-size: 15px;
     width: 70px;
@@ -152,6 +159,7 @@
     border-radius: 20px;
     cursor: pointer;
     margin-left: 3em;
+    transition: background-color 0.3s ease;
 }
 
 .btn-createChat:hover {
@@ -162,17 +170,23 @@
     background-color: #4941D1;
 }
 
+.plus-img {
+    width: 27px;
+    height: 27px;
+    transition: transform 0.3s ease;
+    fill: white;
+}
+
+.btn-createChat.rotate .plus-img {
+    transform: rotate(45deg);
+}
+
 .send-img {
 
     width: 27px;
     height: 27px;
 }
 
-.plus-img {
-
-    width: 27px;
-    height: 27px;
-}
 
 .div-modal-criaChat {
     display: grid;
@@ -181,7 +195,6 @@
     z-index: 1;
     align-items: center;
     justify-content: flex-end;
-    
     margin-left: 6em;
 
 }
@@ -194,7 +207,7 @@
     padding: 4px;
     padding-left: 10px;
     border: none;
-    border:1px groove #908AFF;
+    border: 1px groove #908AFF;
     border-radius: 15px;
     margin-left: 5px;
 
@@ -245,7 +258,7 @@
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    margin-left: 5px;
+    transition: background-color 0.3s ease;
 }
 
 .btn-addParticipants:hover {
@@ -256,34 +269,47 @@
     background-color: #4941D1;
 }
 
-.div-modalAddUser {
+.btn-addParticipants.rotate .plus-img {
+    transform: rotate(45deg);
+}
 
-    display: grid;
-    grid-template-columns: 72% 20%;
+
+.content-modal-addUser {
+    display: flex;
     align-self: center;
     justify-content: center;
     position: absolute;
     z-index: 1;
-    right: 59em;
+    right: 60em;
+    height: 5em;
+    width: 25em;
+    flex-wrap: wrap;
+
+}
+
+.div-modalAddUser {
+
+    display: flex;
+    align-self: center;
+    justify-content: center;
     height: 5em;
     border-radius: 15px;
     border: 1px solid rgba(0, 0, 0, 0.445);
     background-color: white;
     align-items: center;
-    width: 25em;
 }
 
 
 .input-text-addUser {
     display: flex;
-    grid-column: 1;
     height: 25px;
     width: 20em;
     padding: 4px;
     padding-left: 10px;
-    
-    border:1px groove #908AFF;
+    border: 1px groove #908AFF;
     border-radius: 15px;
+    margin-left: 10px;
+
 }
 
 .input-text-addUser:focus {
@@ -292,7 +318,7 @@
 
 
 .btn-addNameUser {
-    grid-column: 2;
+
     padding: 10px 12px;
     font-size: 15px;
     width: 70px;
@@ -305,22 +331,28 @@
     border: none;
     border-radius: 15px;
     cursor: pointer;
-    margin-right: 50px;
-}
-
-/* .other-message{
-    grid-column: 1;
-    display: flex;
-    justify-content: flex-start;
-    margin-left: 8px;
+    margin-right: 10px;
+    margin-left: 10px;
 
 }
 
-.user-message{
-    grid-column: 2;
+.btn-close-modal {
     display: flex;
-    height: 30px;
-    justify-content: flex-end;
-    margin-right: 8px;
+    outline: none;
+    border: none;
+    background: none;
+    width: auto;
+    height: 20px;
+    cursor: pointer;
+    margin-left: 31em;
 
-} */
+}
+
+.close-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.close-icon:hover {
+    opacity: 80%;
+}

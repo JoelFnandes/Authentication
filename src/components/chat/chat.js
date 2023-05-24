@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../authContext';
 import Axios from "axios";
 import { render } from "@testing-library/react";
+import close from "../../icons/times-solid.svg";
 
 function Chat() {
   const [message, setMessage] = useState({});
@@ -19,6 +20,8 @@ function Chat() {
   const [isModalVisible, setModalVisible] = useState(false);
   const [isModalVisibleParti, setModalVisibleParti] = useState(false);
   const [chats, setChats] = useState([]);
+  const [isButtonRotated, setButtonRotated] = useState(false);
+  const [isButtonRotatedParti, setButtonRotatedParti] = useState(false);
 
   const messagesContainerRef = useRef(null);
   const socketRef = useRef(null);
@@ -148,24 +151,27 @@ function Chat() {
   };
 
   const refreshPage = () => {
-    
+
     setChats([]);
     retrieveChats();
-    
+
   }
+
+  const toggleModalCreate = () => {
+    setModalVisible(!isModalVisible);
+    setButtonRotated(!isButtonRotated);
+  };
+  const toggleModalAddParti = () => {
+    setModalVisibleParti(!isModalVisibleParti);
+    setButtonRotatedParti(!isButtonRotatedParti);
+  };
 
   return (
     <div className="chat-geral">
       <div className="create-chat">
-        {isModalVisible ? (
-          <button className="btn-createChat" onClick={() => setModalVisible(false)}>
-            <img className="plus-img" src={plus}></img>
-          </button>
-        ) : (
-          <button className="btn-createChat" onClick={() => setModalVisible(true)}>
-            <img className="plus-img" src={plus}></img>
-          </button>
-        )}
+        <button className={`btn-createChat ${isButtonRotated ? 'rotate' : ''}`} onClick={toggleModalCreate} >
+          <img className="plus-img" src={isButtonRotated ? plus : plus} ></img>
+        </button>
         {isModalVisible ? (
           <div className="div-modal-criaChat">
             <input
@@ -200,21 +206,12 @@ function Chat() {
           <div className="chat-body">
             <div className="chat-header">
               <h3 className="name-chat">{chat.name}</h3>
-              {isModalVisibleParti ? (
-                <button
-                  className="btn-addParticipants"
-                  onClick={() => setModalVisibleParti(false)}
-                >
-                  <img className="plus-img" src={plus}></img>
-                </button>
-              ) : (
-                <button
-                  className="btn-addParticipants"
-                  onClick={() => setModalVisibleParti(true)}
-                >
-                  <img className="plus-img" src={plus}></img>
-                </button>
-              )}
+              <button
+                className={`btn-addParticipants ${isButtonRotatedParti ? 'rotate ' : ''}`}
+                onClick={toggleModalAddParti}
+              >
+                <img className="plus-img" src={isButtonRotatedParti ? plus : plus}></img>
+              </button>
             </div>
             <div className="chat-messages" ref={messagesContainerRef}>
               {chat.messages && Array.isArray(chat.messages) ? (
@@ -256,24 +253,26 @@ function Chat() {
             </div>
           </div>
           {isModalVisibleParti ? (
-            <div className="div-modalAddUser">
-              <input
-                className="input-text-addUser"
-                type="text"
-                onChange={e => {
-                  setNameParti(e.target.value);
-                }}
-                placeholder="Digite o nome do usuário"
-              />
-              <button
-                className="btn-addNameUser"
-                onClick={() => {
-                  setModalVisibleParti(false);
-                  addParticipants(chat.id);
-                }}
-              >
-                Add
-              </button>
+            <div className="content-modal-addUser">
+              <div className="div-modalAddUser">
+                <input
+                  className="input-text-addUser"
+                  type="text"
+                  onChange={e => {
+                    setNameParti(e.target.value);
+                  }}
+                  placeholder="Digite o nome do usuário"
+                />
+                <button
+                  className="btn-addNameUser"
+                  onClick={() => {
+                    setModalVisibleParti(false);
+                    addParticipants(chat.id);
+                  }}
+                >
+                  Add
+                </button>
+              </div>
             </div>
           ) : null}
         </div>
